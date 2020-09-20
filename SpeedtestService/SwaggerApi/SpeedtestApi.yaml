@@ -1,0 +1,128 @@
+openapi: 3.0.0
+
+info:
+  title: Speedtest API
+  description: The Speedtest service measures the results of an successful speedtest and persists the result.
+  contact:
+    email: thomasdrauschke@gmx.de
+  version: 1.0.0
+  
+servers:
+- url: http://localhost:{port}/{basePath}
+  description: The development API server
+  variables: 
+    port:
+      default: '8080'
+      
+    basePath:
+      default: SpeedtestService
+  
+tags:
+- name: "Speedtest"
+  description: "Speedtest API"
+  externalDocs:
+    url: "https://github.com/MallocFreeman/Playground"
+    
+paths:
+  /speedtest:
+    get:
+      description: Starts a new speedtest.
+      tags:
+        - Speedtest
+      responses:
+        200:
+          description: Indicates that the speedtest was successful and returns its result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeedtestResult'
+                
+        500:
+          description: Indicates that an serverside error occured. The speedtest was not successful and no result is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              
+  /history:
+    get:
+      description: Get history data of executed Speedtests if available.
+      tags:
+        - Speedtest
+      parameters:
+        - in: query
+          name: month
+          schema:
+            type: string
+            enum: 
+              - Jan
+              - Feb
+              - Mar
+              - Apr
+              - May
+              - Jun
+              - Jul
+              - Aug
+              - Sep
+              - Oct
+              - Nov
+              - Dec
+            default: "Jan"
+          description: Specifies the month for the retrieved history data.
+          required: true
+          
+        - in: query
+          name: year
+          schema:
+            type: integer
+            minimum: 2020
+            default: 2020
+          required: true
+          description: Specifies the year for the retrieved history data.
+          
+      responses:
+        200:
+          description: Indicates that the history was retrieved successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryElements'
+                
+        500:
+          description: Indicates that an serverside error occured. The speedtest was not successful and no result is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              
+components:
+  schemas:
+    SpeedtestResult:
+      type: object
+      properties:
+        download:
+          type: integer
+        upload:
+          type: integer
+        timestamp:
+          type: string
+      required:
+          - download
+          - upload
+          - timestamp
+          
+    HistoryElements:
+      type: array
+      items:
+        $ref: '#/components/schemas/SpeedtestResult'
+          
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+          - code
+          - message
