@@ -1,0 +1,9 @@
+speedtest:
+  download:
+    url: "http://ipv4.ikoula.testdebit.info/10M.iso"
+    socketTimeout: 5000
+
+  upload:
+    url: "http://ipv4.ikoula.testdebit.info/"
+    fileSize: 10000000
+    socketTimeout: 5000

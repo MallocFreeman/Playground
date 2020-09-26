@@ -29,6 +29,8 @@ dependencies {
     implementation 'com.github.joschi.jackson:jackson-datatype-threetenbp:2.6.4'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.4.RELEASE'
+
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
