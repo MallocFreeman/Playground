@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Handles the callback for the {@link ISpeedTestListener} used whenever the {@link
+ * fr.bmartel.speedtest.SpeedTestSocket} gets used to perform a speedtest.
+ */
 @Data
 public class SpeedValueListener implements ISpeedTestListener {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpeedValueListener.class);
