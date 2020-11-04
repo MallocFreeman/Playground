@@ -1,5 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id "org.openapi.generator" version "4.3.1"
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
@@ -7,6 +8,8 @@ plugins {
 group = 'de.drauschke'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+def domain = 'HomeNetworkService'
 
 configurations {
     compileOnly {
@@ -31,6 +34,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.4.RELEASE'
 
+    implementation 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.21'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -41,4 +45,53 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "${rootDir}/backend/openapi/src/main/java"
+        }
+    }
+}
+
+bootRun {
+    args = ["-Dspring.config.location=file:/home/thomas/git-repo/Playground/SpeedtestService/src/main/resources/homeNetworkService.yml"]
+}
+
+openApiValidate {
+    inputSpec = "$rootDir/openApiServiceDefinition/${domain}.yml".toString()
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    library = "spring-boot"
+    inputSpec = "$rootDir/openApiServiceDefinition/${domain}.yml".toString()
+    outputDir = "$rootDir/".toString()
+    systemProperties = [
+            modelDocs      : "false",
+            models         : "",
+            apis           : "",
+            supportingFiles: "false"
+    ]
+    configOptions = [
+            useOptional            : "true",
+            swaggerDocketConfig    : "false",
+            performBeanValidation  : "false",
+            useBeanValidation      : "true",
+            useTags                : "true",
+            singleContentTypes     : "true",
+            basePackage            : "${group}/${domain}",
+            configPackage          : "${group}/${domain}",
+            title                  : rootProject.name,
+            java8                  : "false",
+            dateLibrary            : "java8",
+            serializableModel      : "true",
+            artifactId             : rootProject.name,
+            apiPackage             : "${group}.${domain}.api",
+            modelPackage           : "${group}.${domain}.model",
+            invokerPackage         : "${group}.${domain}.api",
+            interfaceOnly          : "false",
+            generateSupportingFiles: "true"
+    ]
 }

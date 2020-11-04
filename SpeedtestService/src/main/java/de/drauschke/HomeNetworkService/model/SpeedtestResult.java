@@ -1,26 +1,27 @@
-package de.drauschke.SpeedtestService.model;
+package de.drauschke.HomeNetworkService.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 /** SpeedtestResult */
-@Validated
 @javax.annotation.Generated(
-    value = "io.swagger.codegen.v3.generators.java.SpringCodegen",
-    date = "2020-09-17T18:49:29.017Z[GMT]")
-public class SpeedtestResult {
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2020-10-26T20:21:52.118154+01:00[Europe/Berlin]")
+public class SpeedtestResult implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("download")
-  private Integer download = null;
+  private Integer download;
 
   @JsonProperty("upload")
-  private Integer upload = null;
+  private Integer upload;
 
   @JsonProperty("timestamp")
-  private String timestamp = null;
+  private String timestamp;
 
   public SpeedtestResult download(Integer download) {
     this.download = download;
@@ -83,7 +84,7 @@ public class SpeedtestResult {
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
@@ -116,7 +117,7 @@ public class SpeedtestResult {
   /**
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

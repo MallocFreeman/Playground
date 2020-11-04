@@ -1,23 +1,24 @@
-package de.drauschke.SpeedtestService.model;
+package de.drauschke.HomeNetworkService.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 /** Error */
-@Validated
 @javax.annotation.Generated(
-    value = "io.swagger.codegen.v3.generators.java.SpringCodegen",
-    date = "2020-09-17T18:49:29.017Z[GMT]")
-public class Error {
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2020-10-26T20:21:52.118154+01:00[Europe/Berlin]")
+public class Error implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("code")
-  private String code = null;
+  private String code;
 
   @JsonProperty("message")
-  private String message = null;
+  private String message;
 
   public Error code(String code) {
     this.code = code;
@@ -60,7 +61,7 @@ public class Error {
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
@@ -90,7 +91,7 @@ public class Error {
   /**
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

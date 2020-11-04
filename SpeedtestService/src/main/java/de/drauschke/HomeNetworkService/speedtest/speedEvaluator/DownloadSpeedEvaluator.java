@@ -1,6 +1,6 @@
-package de.drauschke.SpeedtestService.speedservice.speedEvaluator;
+package de.drauschke.HomeNetworkService.speedtest.speedEvaluator;
 
-import de.drauschke.SpeedtestService.configuration.DownloadConfiguration;
+import de.drauschke.HomeNetworkService.speedtest.configuration.DownloadConfiguration;
 import fr.bmartel.speedtest.SpeedTestSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

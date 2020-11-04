@@ -1,32 +1,32 @@
 openapi: 3.0.0
 
 info:
-  title: Speedtest API
-  description: The Speedtest service measures the results of an successful speedtest and persists the result.
+  title: Home network API
+  description: The HomeNetwork API provides some operations useful for our home network for statistics about our direct subscriber line.
   contact:
     email: thomasdrauschke@gmx.de
   version: 1.0.0
-  
+
 servers:
-- url: http://localhost:{port}/{basePath}
-  description: The development API server
-  variables: 
-    port:
-      default: '8080'
-      
-    basePath:
-      default: SpeedtestService
-  
+  - url: http://localhost:{port}/{basePath}
+    description: The development API server
+    variables:
+      port:
+        default: '8080'
+
+      basePath:
+        default: homeNetwork
+
 tags:
-- name: "Speedtest"
-  description: "Speedtest API"
-  externalDocs:
-    url: "https://github.com/MallocFreeman/Playground"
-    
+  - name: "Home network service"
+    description: "HomeNetwork API"
+    externalDocs:
+      url: "https://github.com/MallocFreeman/Playground"
+
 paths:
   /speedtest:
     get:
-      description: Starts a new speedtest.
+      description: Measures the results of an successful speedtest and persists the result.
       tags:
         - Speedtest
       responses:
@@ -36,15 +36,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpeedtestResult'
-                
+
         500:
           description: Indicates that an serverside error occured. The speedtest was not successful and no result is returned.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-              
-  /history:
+
+  /speedtest-history:
     get:
       description: Get history data of executed Speedtests if available.
       tags:
@@ -54,7 +54,7 @@ paths:
           name: month
           schema:
             type: string
-            enum: 
+            enum:
               - Jan
               - Feb
               - Mar
@@ -70,7 +70,7 @@ paths:
             default: "Jan"
           description: Specifies the month for the retrieved history data.
           required: true
-          
+
         - in: query
           name: year
           schema:
@@ -79,22 +79,22 @@ paths:
             default: 2020
           required: true
           description: Specifies the year for the retrieved history data.
-          
+
       responses:
         200:
           description: Indicates that the history was retrieved successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HistoryElements'
-                
+                $ref: '#/components/schemas/SpeedtestHistoryElements'
+
         500:
           description: Indicates that an serverside error occured. The speedtest was not successful and no result is returned.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-              
+
 components:
   schemas:
     SpeedtestResult:
@@ -107,15 +107,15 @@ components:
         timestamp:
           type: string
       required:
-          - download
-          - upload
-          - timestamp
-          
-    HistoryElements:
+        - download
+        - upload
+        - timestamp
+
+    SpeedtestHistoryElements:
       type: array
       items:
         $ref: '#/components/schemas/SpeedtestResult'
-          
+
     Error:
       type: object
       properties:
@@ -124,5 +124,5 @@ components:
         message:
           type: string
       required:
-          - code
-          - message
+        - code
+        - message

@@ -1,4 +1,4 @@
-package de.drauschke.SpeedtestService.speedservice.speedEvaluator;
+package de.drauschke.HomeNetworkService.speedtest.speedEvaluator;
 
 import fr.bmartel.speedtest.SpeedTestReport;
 import fr.bmartel.speedtest.inter.ISpeedTestListener;

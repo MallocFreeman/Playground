@@ -1,4 +1,4 @@
-# Configuration for the SpeedtestService.
+# Configuration for the HomeNetworkService.
 
 speedtest:
   download:
