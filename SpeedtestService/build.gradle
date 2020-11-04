@@ -55,10 +55,6 @@ sourceSets {
     }
 }
 
-bootRun {
-    args = ["-Dspring.config.location=file:/home/thomas/git-repo/Playground/SpeedtestService/src/main/resources/homeNetworkService.yml"]
-}
-
 openApiValidate {
     inputSpec = "$rootDir/openApiServiceDefinition/${domain}.yml".toString()
 }

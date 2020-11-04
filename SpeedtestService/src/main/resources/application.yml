@@ -1,19 +1,20 @@
 # Configuration for the HomeNetworkService.
 
-speedtest:
-  download:
-    # Defines the url that is used to specify a download resource.
-    url: "http://ipv4.ikoula.testdebit.info/10M.iso"
+homenetwork:
+  speedtest:
+    download:
+      # Defines the url that is used to specify a download resource.
+      url: "http://ipv4.ikoula.testdebit.info/10M.iso"
 
-    # Defines the socket timeout in milliseconds for the download test.
-    socketTimeout: 5000
+      # Defines the socket timeout in milliseconds for the download test.
+      socketTimeout: 5000
 
-  upload:
-    # Defines the url that is used to specify an upload endoint.
-    url: "http://ipv4.ikoula.testdebit.info/"
+    upload:
+      # Defines the url that is used to specify an upload endoint.
+      url: "http://ipv4.ikoula.testdebit.info/"
 
-    # Defines the size of the file that shall be uploaded in bytes
-    fileSize: 10000000
+      # Defines the size of the file that shall be uploaded in bytes
+      fileSize: 10000000
 
-    # Defines the socket timeout in milliseconds for the upload test.
-    socketTimeout: 5000
+      # Defines the socket timeout in milliseconds for the upload test.
+      socketTimeout: 5000

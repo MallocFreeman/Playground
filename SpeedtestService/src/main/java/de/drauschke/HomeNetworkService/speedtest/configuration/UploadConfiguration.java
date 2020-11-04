@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Validated
 @Configuration
-@ConfigurationProperties(prefix = "speedtest.upload")
+@ConfigurationProperties(prefix = "homenetwork.speedtest.upload")
 public class UploadConfiguration {
   @NotEmpty private String url;
 

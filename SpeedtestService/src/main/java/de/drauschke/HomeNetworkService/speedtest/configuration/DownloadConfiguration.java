@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Validated
 @Configuration
-@ConfigurationProperties(prefix = "speedtest.download")
+@ConfigurationProperties(prefix = "homenetwork.speedtest.download")
 public class DownloadConfiguration {
   @NotEmpty private String url;
 

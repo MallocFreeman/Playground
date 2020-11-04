@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /** Service class to start a new speedtest and persist its data. */
 @Service
@@ -25,10 +27,15 @@ public class SpeedtestService {
     SpeedtestResult speedtestResult = new SpeedtestResult();
     speedtestResult.setUpload(transformResult(uploadSpeedEvaluator.evaluate()));
     speedtestResult.setDownload(transformResult(downloadSpeedEvaluator.evaluate()));
+    speedtestResult.setTimestamp(createTimestamp());
     return speedtestResult;
   }
 
   private int transformResult(BigDecimal value) {
     return value.intValue();
+  }
+
+  private String createTimestamp() {
+    return new Timestamp(new Date().getTime()).toString();
   }
 }
