@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+/** Configuration for download properties. */
 @Data
 @Validated
 @Configuration

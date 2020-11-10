@@ -2,7 +2,9 @@ package de.drauschke.HomeNetworkService.api;
 
 import de.drauschke.HomeNetworkService.model.Error;
 import de.drauschke.HomeNetworkService.model.SpeedtestResult;
-import de.drauschke.HomeNetworkService.speedtest.SpeedtestService;
+import de.drauschke.HomeNetworkService.speedtest.SpeedtestExecutor;
+import de.drauschke.HomeNetworkService.speedtest.SpeedtestHistoryService;
+import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.SpeedEvaluationException;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -28,7 +30,8 @@ import java.util.List;
 public class SpeedtestApiController implements SpeedtestApi {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpeedtestApiController.class);
   private final NativeWebRequest request;
-  private final SpeedtestService speedtestService;
+  private final SpeedtestExecutor speedtestExecutor;
+  private final SpeedtestHistoryService speedtestHistoryService;
 
   /**
    * GET /speedtest Measures the results of an successful speedtest and persists the result.
@@ -40,8 +43,8 @@ public class SpeedtestApiController implements SpeedtestApi {
    */
   public ResponseEntity<SpeedtestResult> speedtestGet() {
     try {
-      return new ResponseEntity(speedtestService.startSpeedtest(), HttpStatus.OK);
-    } catch (Exception exception) {
+      return new ResponseEntity(speedtestExecutor.execute(), HttpStatus.OK);
+    } catch (SpeedEvaluationException | InterruptedException exception) {
       Error error = new Error();
       error.setMessage(exception.getMessage());
       error.setCode(exception.getStackTrace().toString());
@@ -78,6 +81,7 @@ public class SpeedtestApiController implements SpeedtestApi {
           @Valid
           @RequestParam(value = "year", required = true, defaultValue = "2020")
           Integer year) {
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    return new ResponseEntity<>(speedtestHistoryService.getHistory(), HttpStatus.OK);
   }
 }

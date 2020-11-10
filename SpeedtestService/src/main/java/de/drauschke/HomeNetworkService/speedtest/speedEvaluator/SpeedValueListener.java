@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -28,7 +29,8 @@ public class SpeedValueListener implements ISpeedTestListener {
 
   @Override
   public void onCompletion(SpeedTestReport report) {
-    transferRateInMBit = report.getTransferRateBit().divide(BigDecimal.valueOf(1_000_000));
+    transferRateInMBit =
+        report.getTransferRateBit().divide(BigDecimal.valueOf(1_000_000), RoundingMode.HALF_DOWN);
     countDownLatch.countDown();
   }
 

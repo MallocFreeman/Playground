@@ -1,6 +1,7 @@
 package de.drauschke.HomeNetworkService.speedtest.speedEvaluator;
 
 import fr.bmartel.speedtest.SpeedTestSocket;
+import fr.bmartel.speedtest.model.SpeedTestError;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 
@@ -23,9 +24,10 @@ public abstract class SpeedEvaluator {
    * Starts a new speedtest with predefined parameters of the child class.
    *
    * @return the speedtest result rate as {@link BigDecimal}
-   * @throws Exception if the speedtest runs into an error or another error while execution happens.
+   * @throws SpeedEvaluationException if the speedtest runs into an error or another error while
+   *     execution happens.
    */
-  public synchronized BigDecimal evaluate() throws Exception {
+  public synchronized BigDecimal evaluate() throws SpeedEvaluationException, InterruptedException {
     CountDownLatch countDownLatch = new CountDownLatch(1);
     SpeedValueListener speedValueListener = new SpeedValueListener(countDownLatch);
     evaluateSpeed(createSpeedTestSocket(speedValueListener));
@@ -41,10 +43,13 @@ public abstract class SpeedEvaluator {
    */
   abstract void evaluateSpeed(SpeedTestSocket speedTestSocket);
 
-  private void validateResult(SpeedValueListener speedValueListener) throws Exception {
+  private void validateResult(SpeedValueListener speedValueListener)
+      throws SpeedEvaluationException {
+    SpeedTestError speedTestError = speedValueListener.getSpeedTestError();
     String errorMessage = speedValueListener.getErrorMessage();
-    if (speedValueListener.getSpeedTestError() != null || !StringUtils.isEmpty(errorMessage)) {
-      throw new Exception(errorMessage);
+
+    if (speedTestError != null || !StringUtils.isEmpty(errorMessage)) {
+      throw new SpeedEvaluationException(speedTestError, errorMessage);
     }
   }
 
