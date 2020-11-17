@@ -37,6 +37,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
 
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.3.3.RELEASE'
+    implementation 'org.ehcache:ehcache:3.8.1'
+    implementation 'javax.cache:cache-api:1.1.1'
+
     implementation 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.21'
 
     compileOnly 'org.projectlombok:lombok'
@@ -51,7 +55,7 @@ test {
 }
 
 sourceSets {
-    main {
+    main{
         java {
             srcDir "${rootDir}/backend/openapi/src/main/java"
         }

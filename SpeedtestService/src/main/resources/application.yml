@@ -10,6 +10,11 @@ spring:
     username: drauschke
     password: Fightthepower
 
+
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+
 homenetwork:
   speedtest:
     download:

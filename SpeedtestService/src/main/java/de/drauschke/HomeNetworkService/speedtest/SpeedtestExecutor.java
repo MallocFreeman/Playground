@@ -6,6 +6,7 @@ import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.DownloadSpeedEva
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.SpeedEvaluationException;
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.UploadSpeedEvaluator;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class SpeedtestExecutor {
    * @return The result of the speedtest with upload and download speed rate.
    * @throws SpeedEvaluationException in case of an error such as timeouts or undefined behaviour.
    */
+  @Cacheable(value="speedtestResult")
   public SpeedtestResult execute() throws SpeedEvaluationException, InterruptedException {
     SpeedtestResult speedtestResult = new SpeedtestResult();
     speedtestResult.setUpload(transformResult(uploadSpeedEvaluator.evaluate()));
