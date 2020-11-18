@@ -1,0 +1,14 @@
+<config xmlns='http://www.ehcache.org/v3'>
+    <cache alias="speedtestResult">
+        <key-type>org.springframework.cache.interceptor.SimpleKey</key-type>
+        <value-type>de.drauschke.HomeNetworkService.model.SpeedtestResult</value-type>
+
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+
+        <resources>
+            <heap>1</heap>
+        </resources>
+    </cache>
+</config>
