@@ -7,7 +7,6 @@ plugins {
 
 group = 'de.drauschke'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 def domain = 'HomeNetworkService'
 
@@ -41,8 +40,6 @@ dependencies {
     implementation 'org.ehcache:ehcache:3.8.1'
     implementation 'javax.cache:cache-api:1.1.1'
 
-    implementation 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.21'
-
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -55,7 +52,7 @@ test {
 }
 
 sourceSets {
-    main{
+    main {
         java {
             srcDir "${rootDir}/backend/openapi/src/main/java"
         }
