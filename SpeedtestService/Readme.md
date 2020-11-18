@@ -6,3 +6,7 @@
 - Pass path to configuration file:
     - Dspring.config.location=file:/pathToConfiguration/homeNetworkService.yml 
     
+    
+- Information for SSL:
+    - Get information and verify keystore:
+        - keytool -list -v -storetype pkcs12 -keystore keystore.p12

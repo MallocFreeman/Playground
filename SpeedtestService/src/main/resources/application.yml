@@ -14,6 +14,15 @@ spring:
     jcache:
       config: classpath:ehcache.xml
 
+server:
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: homenetworkcertificate
+    key-password: password
+  port: 8443
+
 homenetwork:
   speedtest:
     download:
