@@ -5,13 +5,12 @@ import de.drauschke.HomeNetworkService.speedtest.persistence.SpeedtestResultPers
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.DownloadSpeedEvaluator;
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.SpeedEvaluationException;
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.UploadSpeedEvaluator;
-import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 /** Service class to start a new speedtest and persist its data. */
 @Service
@@ -27,7 +26,7 @@ public class SpeedtestExecutor {
    * @return The result of the speedtest with upload and download speed rate.
    * @throws SpeedEvaluationException in case of an error such as timeouts or undefined behaviour.
    */
-  @Cacheable(value="speedtestResult")
+  @Cacheable(value = "speedtestResult")
   public SpeedtestResult execute() throws SpeedEvaluationException, InterruptedException {
     SpeedtestResult speedtestResult = new SpeedtestResult();
     speedtestResult.setUpload(transformResult(uploadSpeedEvaluator.evaluate()));

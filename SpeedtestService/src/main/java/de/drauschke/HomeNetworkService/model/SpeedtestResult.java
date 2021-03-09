@@ -2,10 +2,9 @@ package de.drauschke.HomeNetworkService.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
 /** SpeedtestResult */
 @javax.annotation.Generated(

@@ -2,12 +2,11 @@ package de.drauschke.HomeNetworkService.speedtest.speedEvaluator;
 
 import fr.bmartel.speedtest.SpeedTestSocket;
 import fr.bmartel.speedtest.model.SpeedTestError;
-import lombok.AllArgsConstructor;
-import org.springframework.util.StringUtils;
-
 import java.math.BigDecimal;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import lombok.AllArgsConstructor;
+import org.springframework.util.StringUtils;
 
 /**
  * Provides the usage of the used JSpeedTest library and provides the values of a speed rate

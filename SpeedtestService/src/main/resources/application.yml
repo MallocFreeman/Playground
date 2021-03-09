@@ -2,13 +2,22 @@
 
 spring:
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
     hibernate:
       ddl-auto: update
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/homenetwork
-    username: drauschke
-    password: Fightthepower
+    #   Used for H2:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+    #    Used for MariaDB:
+    #    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/homenetwork
+    #    username: drauschke
+    #    password: Fightthepower
 
   cache:
     jcache:
@@ -17,15 +26,10 @@ spring:
 homenetwork:
   speedtest:
     download:
-      # Defines the url that is used to specify a download resource.
       url: "http://ipv4.ikoula.testdebit.info/10M.iso"
-      # Defines the socket timeout in milliseconds for the download test.
       socketTimeout: 5000
 
     upload:
-      # Defines the url that is used to specify an upload endoint.
       url: "http://ipv4.ikoula.testdebit.info/"
-      # Defines the size of the file that shall be uploaded in bytes
       fileSize: 10000000
-      # Defines the socket timeout in milliseconds for the upload test.
       socketTimeout: 5000

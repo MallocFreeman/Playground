@@ -6,6 +6,10 @@ import de.drauschke.HomeNetworkService.speedtest.SpeedtestExecutor;
 import de.drauschke.HomeNetworkService.speedtest.SpeedtestHistoryService;
 import de.drauschke.HomeNetworkService.speedtest.speedEvaluator.SpeedEvaluationException;
 import io.swagger.annotations.ApiParam;
+import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @javax.annotation.Generated(
     value = "org.openapitools.codegen.languages.SpringCodegen",
