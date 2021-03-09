@@ -8,16 +8,10 @@ spring:
       ddl-auto: update
 
   datasource:
-    #   Used for H2:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password:
-
-    #    Used for MariaDB:
-    #    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/homenetwork
-    #    username: drauschke
-    #    password: Fightthepower
 
   cache:
     jcache:
