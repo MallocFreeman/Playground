@@ -8,10 +8,10 @@ spring:
       ddl-auto: update
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:file:D:\Workspace\Playground\homeNetwork\src\main\resources\h2.db
     driverClassName: org.h2.Driver
-    username: sa
-    password:
+    username: Lucky
+    password: Lorenzo
 
   cache:
     jcache:

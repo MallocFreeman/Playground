@@ -7,7 +7,6 @@ Endpoints:
   - Triggers a new Speedtest
   - Cache time to live is configurable in the application.yml
     -   cache.jcache.config=classpath:ehcache.xml
-  
 
 - localhost:8080/homeNetwork/speedtest-history
   - Retrieves all speedtest results from the database.
@@ -25,6 +24,11 @@ For proper usage do the following:
     - spring.jpa.datasource.driverClassName: org.h2.Driver
     - spring.jpa.datasource.username= sa
     - spring.jpa.datasource.password= ""
+  - H2 file based:
+    - spring.jpa.datasource.url: jdbc:h2:file:classpath:h2.db
+    - spring.jpa.datasource.driverClassName: org.h2.Driver
+    - spring.jpa.datasource.username= Lucky
+    - spring.jpa.datasource.password= Lorenzo
 
 - Pass path to configuration file when starting the service:
     - Dspring.config.location=file:/pathToConfiguration/homeNetworkService.yml 
